@@ -1,0 +1,387 @@
+/* Google Fonts: Inter & Poppins */
+body {
+  font-family: 'Inter', 'Poppins', Arial, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  transition: background 0.6s cubic-bezier(.4,0,.2,1);
+}
+:root {
+  --bg-gradient: linear-gradient(120deg, #181c2b 0%, #232946 100%);
+  --card-bg: rgba(36, 40, 59, 0.92);
+  --card-blur: 18px;
+  --card-border: rgba(255,255,255,0.08);
+  --text-main: #f3f3f3;
+  --text-secondary: #b0b8c9;
+  --btn-gradient: linear-gradient(90deg, #232526 0%, #414345 100%);
+  --btn-gradient-hover: linear-gradient(90deg, #414345 0%, #232526 100%);
+  --shadow: 0 8px 32px 0 rgba(20, 30, 60, 0.25);
+  --accent: #ffb347;
+  --danger: #ff5e62;
+  --success: #4fd18b;
+  --glow: 0 0 8px 2px #ffb34799;
+}
+body.light {
+  --bg-gradient: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+  --card-bg: rgba(255,255,255,0.9);
+  --card-blur: 12px;
+  --card-border: rgba(0,0,0,0.08);
+  --text-main: #232946;
+  --text-secondary: #555;
+  --btn-gradient: linear-gradient(90deg, #ff758c 0%, #ff7eb3 100%);
+  --btn-gradient-hover: linear-gradient(90deg, #ff7eb3 0%, #ff758c 100%);
+  --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.12);
+  --glow: 0 0 8px 2px #ff7eb399;
+}
+.app-container {
+  max-width: 980px;
+  margin-left: 2vw;
+  margin-right: auto;
+  padding: 2.5rem 1rem 1.5rem 1rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+header h1 {
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--text-main);
+  letter-spacing: 0.01em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+#darkModeToggle {
+  background: var(--btn-gradient);
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+#darkModeToggle:before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: var(--glow);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 0;
+}
+#darkModeToggle:hover:before {
+  opacity: 1;
+}
+#darkModeToggle:hover {
+  background: var(--btn-gradient-hover);
+  transform: scale(1.08) rotate(-10deg);
+}
+#darkModeToggle:active {
+  transform: scale(0.96) rotate(10deg);
+}
+main {
+  width: 100%;
+}
+section {
+  margin-bottom: 1.5em;
+}
+h2 {
+  color: var(--text-main);
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 0.7em;
+  letter-spacing: 0.01em;
+}
+.subscription-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  min-height: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 7em;
+  row-gap: 3em;
+  max-width: 900px;
+  margin-left: 0;
+  margin-right: 0;
+  position: relative;
+}
+@media (min-width: 900px) {
+  .subscription-list::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent 0%, #8883 50%, transparent 100%);
+    z-index: 0;
+    pointer-events: none;
+  }
+}
+.subscription-card {
+  background: var(--card-bg);
+  border-radius: 1.2em;
+  box-shadow: var(--shadow);
+  padding: 0.7em 2.4em 0.7em 2.4em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5em;
+  border: 1.5px solid var(--card-border);
+  backdrop-filter: blur(var(--card-blur));
+  transition: box-shadow 0.2s, transform 0.2s, background 0.3s, opacity 0.4s;
+  position: relative;
+  opacity: 1;
+  animation: fadeIn 0.5s;
+  min-height: 90px;
+  max-width: 420px;
+  width: 100%;
+  margin-bottom: 0;
+  z-index: 1;
+}
+.subscription-card:hover {
+  box-shadow: 0 8px 32px 0 var(--accent), 0 2px 8px 0 rgba(0,0,0,0.10);
+  transform: translateY(-4px) scale(1.03);
+  background: var(--btn-gradient-hover);
+  color: #fff;
+}
+.subscription-card.fade-out {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.subscription-content {
+  width: 100%;
+}
+.subscription-title {
+  font-size: 1.08em;
+  color: var(--text-main);
+  word-break: break-word;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.subscription-title img {
+  width: 44px;
+  height: 44px;
+  border-radius: 0.7em;
+  object-fit: cover;
+  margin-right: 0.7em;
+  background: #fff2;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+}
+.subscription-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5em;
+  font-size: 1.05em;
+  margin-top: 0.3em;
+  color: var(--text-secondary);
+  width: 100%;
+}
+.subscription-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+.subscription-actions {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+  margin-top: 0.5em;
+}
+.subscription-actions button {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.1em;
+  cursor: pointer;
+  padding: 0.3em;
+  border-radius: 50%;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+.subscription-actions button:hover {
+  background: var(--btn-gradient);
+  color: #fff;
+  box-shadow: 0 0 0 3px var(--accent), var(--shadow);
+  transform: scale(1.08) rotate(-8deg);
+}
+.subscription-actions button:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 0 2px var(--danger), var(--shadow);
+}
+#subscriptionForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7em 0.5em;
+  background: var(--card-bg);
+  border-radius: 1.2em;
+  box-shadow: var(--shadow);
+  padding: 0.9em 1.1em 0.9em 1.1em;
+  backdrop-filter: blur(var(--card-blur));
+  border: 1.5px solid var(--card-border);
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 0.5em;
+}
+#subscriptionForm input[type="text"], #subscriptionForm input[type="number"], #subscriptionForm input[type="date"], #subscriptionForm select {
+  flex: 1 1 120px;
+  min-width: 100px;
+  border: none;
+  background: transparent;
+  font-size: 1em;
+  color: var(--text-main);
+  outline: none;
+  padding: 0.5em 0.2em;
+  border-radius: 0.7em;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+#subscriptionForm input:focus, #subscriptionForm select:focus {
+  background: rgba(255,255,255,0.10);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+#iconUpload {
+  flex: 1 1 120px;
+  min-width: 100px;
+  color: var(--text-secondary);
+  font-size: 0.95em;
+  border-radius: 0.7em;
+  background: transparent;
+  border: none;
+  margin-top: 0.2em;
+}
+#addSubscriptionBtn {
+  background: var(--btn-gradient);
+  color: #fff;
+  border: none;
+  border-radius: 1.2em;
+  padding: 0.5em 1.1em;
+  font-weight: 600;
+  font-size: 1em;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.2s, box-shadow 0.3s;
+  position: relative;
+  z-index: 1;
+}
+#addSubscriptionBtn:before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1.2em;
+  box-shadow: var(--glow);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: -1;
+}
+#addSubscriptionBtn:hover:before {
+  opacity: 1;
+}
+#addSubscriptionBtn:hover {
+  background: var(--btn-gradient-hover);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 0 0 4px var(--accent), var(--shadow), var(--glow);
+}
+#addSubscriptionBtn:active {
+  transform: scale(0.97);
+  box-shadow: 0 0 0 2px var(--accent), var(--shadow);
+}
+.pie-chart-container {
+  background: var(--card-bg);
+  border-radius: 1.2em;
+  box-shadow: var(--shadow);
+  padding: 0.7em;
+  border: 1.5px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1em;
+}
+.totals {
+  color: var(--text-main);
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+.empty-state {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1.1em;
+  margin-top: 2em;
+  display: none;
+  opacity: 0.8;
+}
+.empty-state i {
+  font-size: 2em;
+  margin-bottom: 0.2em;
+  display: block;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: none; }
+}
+@media (max-width: 1200px) {
+  .app-container {
+    max-width: 98vw;
+  }
+  .subscription-list {
+    grid-template-columns: 1fr;
+    max-width: 98vw;
+  }
+  .subscription-card {
+    padding: 0.7em 0.7em;
+    max-width: 98vw;
+  }
+}
+@media (max-width: 700px) {
+  .app-container {
+    max-width: 100vw;
+    padding: 1.2rem 0.2rem 1rem 0.2rem;
+  }
+  #subscriptionForm {
+    flex-direction: column;
+    gap: 0.6em;
+    padding: 0.7em 0.5em;
+  }
+  .subscription-card {
+    padding: 0.8em 0.7em;
+  }
+  .pie-chart-container {
+    padding: 0.3em;
+  }
+  #darkModeToggle {
+    width: 36px;
+    height: 36px;
+    font-size: 1em;
+  }
+}
+body, .subscription-card, .app-container, .pie-chart-container, .totals {
+  transition: background 0.4s cubic-bezier(.4,0,.2,1), color 0.4s cubic-bezier(.4,0,.2,1);
+} 
