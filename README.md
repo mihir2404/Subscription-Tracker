@@ -1,11 +1,10 @@
 🎟️ Subscription Tracker
 A modern, responsive web app to help users manage their OTT/music subscriptions in one place with a beautiful UI and smooth user experience.
-📌 Features
-🌗 Dark/Light mode toggle with animated transitions
+Features
+Dark/Light mode toggle with animated transitions
+ Add and track all subscriptions (Netflix, Spotify, Prime, etc.)
 
-📅 Add and track all subscriptions (Netflix, Spotify, Prime, etc.)
-
-📊 View monthly cost summary
+ View monthly cost summary
 
 🧾 See upcoming renewals
 
